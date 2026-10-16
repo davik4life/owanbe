@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Owambe</title>
+  <meta name="description" content="A talking-drum rhythm game. You're on drums at a Lagos party: hit the beats, keep the crowd dancing, and get sprayed.">
+  <meta name="theme-color" content="#1b1446">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/shrikhand.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="stage" aria-label="The party stage"></canvas>
+
+  <div class="startng-card" id="player-card" hidden>
+    <img id="player-face" alt="">
+    <div>
+      <b id="player-name">Guest</b>
+      <span id="player-account">Not signed in</span>
+    </div>
+    <button id="player-sign-in" type="button" hidden>Sign in</button>
+  </div>
+
+  <!-- In-game HUD -->
+  <div id="hud" hidden>
+    <div class="progress"><i id="progress"></i></div>
+    <div class="scorebox">
+      <div id="score">0</div>
+      <div id="mult">×1</div>
+    </div>
+    <button id="pause-btn" class="icon-btn" type="button" aria-label="Pause">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"/></svg>
+    </button>
+  </div>
+
+  <!-- Title -->
+  <section id="title" class="screen">
+    <div class="title-inner">
+      <h1 class="logo">Owambe</h1>
+      <p class="lede">You're on talking drum tonight. Hit every beat and keep the party going.</p>
+
+      <div class="invites" id="songs" role="radiogroup" aria-label="Choose a song"></div>
+
+      <button id="start" class="cta" type="button">Start the party</button>
+
+      <p class="keys" id="keys-hint">Play with <kbd>D</kbd> <kbd>F</kbd> <kbd>J</kbd> <kbd>K</kbd> or the arrow keys. On a phone, tap the drums.</p>
+
+      <div class="title-foot">
+        <div class="timing">
+          <span>Timing</span>
+          <button type="button" id="offset-down" aria-label="Hit earlier">−</button>
+          <output id="offset">0 ms</output>
+          <button type="button" id="offset-up" aria-label="Hit later">+</button>
+        </div>
+        <button type="button" id="board-btn" class="link-btn">Top drummers</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaderboard -->
+  <section id="board" class="screen sheet" hidden>
+    <div class="panel">
+      <h2>Top drummers</h2>
+      <ol id="board-list" class="board-list"></ol>
+      <button type="button" class="cta small" id="board-close">Back</button>
+    </div>
+  </section>
+
+  <!-- Pause -->
+  <section id="paused" class="screen sheet" hidden>
+    <div class="panel narrow">
+      <h2>Paused</h2>
+      <p class="muted">The band is waiting for you.</p>
+      <div class="row">
+        <button type="button" class="cta small" id="resume">Resume</button>
+        <button type="button" class="ghost" id="quit">Leave the stage</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" class="screen sheet" hidden>
+    <div class="panel results">
+      <div class="grade-wrap">
+        <div id="grade" class="grade">A</div>
+        <div>
+          <p id="song-done" class="song-done"></p>
+          <p id="verdict" class="verdict"></p>
+        </div>
+      </div>
+      <dl class="stats">
+        <div><dt>Points</dt><dd id="r-score">0</dd></div>
+        <div><dt>Best combo</dt><dd id="r-combo">0</dd></div>
+        <div><dt>Accuracy</dt><dd id="r-acc">0%</dd></div>
+      </dl>
+      <ul class="tally" id="r-tally"></ul>
+      <p id="save-status" class="save-status"></p>
+      <ol id="r-board" class="board-list compact"></ol>
+      <div class="row">
+        <button type="button" class="cta small" id="again">Play again</button>
+        <button type="button" class="ghost" id="menu">Pick another song</button>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="src/game.js"></script>
+</body>
+</html>

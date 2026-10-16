@@ -1,0 +1,8 @@
+{
+  "leaderboard": {
+    "stats": [
+      { "key": "points", "label": "Points", "order": "highest" },
+      { "key": "best_combo", "label": "Best combo", "order": "highest" }
+    ]
+  }
+}
